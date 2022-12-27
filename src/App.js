@@ -1,25 +1,23 @@
-import logo from './logo.svg';
-import './App.css';
+import { Route, Switch } from "wouter"
+import Layout from "./components/layout"
+import CreateUser from "./pages/create-user"
+import Homepage from "./pages/home"
+import { Provider } from 'react-redux'
+import store from "./store"
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+
+const App = () => {
+  return <>
+    <Provider store={store}>
+      <Layout>
+        <Switch>
+          <Route path="/create-user" component={CreateUser} />
+          <Route path="/" component={Homepage} />
+        </Switch>
+      </Layout>
+    </Provider>
+  </>
 }
 
-export default App;
+
+export default App
